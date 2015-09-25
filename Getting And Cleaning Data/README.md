@@ -2,12 +2,12 @@
 
 ## Project Background
 
-###The purpose of this project is to demonstrate:
+The purpose of this project is to demonstrate:
  * ability to collect data
  * work with data
  * clean a data set. 
 
-###The goal is 
+The goal is 
  * to prepare tidy data for later analysis. 
  
 
