@@ -2,16 +2,16 @@
 
 ## Project Background
 
-###The purpose of this project is to demonstrate:
+#The purpose of this project is to demonstrate:
  * ability to collect data
  * work with data
  * clean a data set. 
 
-###The goal is 
+#The goal is 
  * to prepare tidy data for later analysis. 
  
 
-###Data Source
+#Data Source
   Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. 
   Following data represent data collected from the accelerometers from the Samsung Galaxy S smartphone. 
   A full description is available at the site where the data was obtained:
