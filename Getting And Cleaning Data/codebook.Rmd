@@ -1,0 +1,35 @@
+Codebook
+========
+
+Date Structure
+---------------
+```{r}
+str(tidyData)
+```
+Show Top 3 Rows of Data
+-----------------------
+```{r}
+head(tidyData, n=3)
+```
+Summary of Variables
+--------------------
+```{r}
+summary(tidyData)
+```
+
+Key Variables in Data
+---------------------
+```{r}
+key(tidyData)
+```
+
+All Features Possible
+---------------------
+```{r}
+tidyData[, .N, by=c(names(tidyData)[grep("^feat", names(tidyData))])]
+```
+Save Data Table into Text File
+------------------------------
+```{r}
+f <- file.path(path, "HumanActivityRecognitionUsingSmartphones_TD.txt")
+write.table(tidyData, f, quote=FALSE, sep="\t", row.names=FALSE)
