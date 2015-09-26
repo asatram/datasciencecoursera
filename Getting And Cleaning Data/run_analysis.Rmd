@@ -2,24 +2,8 @@ Run Data Analysis
 ==================
 Anil Satram
 
-25 September 2015
+12 September 2015
 
-
-Pre-requisite
--------------
-#Load required pacakges:
-
-```{r}
-#packages <- c("data.table", "reshape2","knitr")
-#sapply(packages, require, character.only=TRUE, quietly=TRUE)
-```
-
-Recognise Path and list files
-```{r}
-#path <- getwd()
-#filespath <- file.path(path, "UCI HAR Dataset")
-#list.files(filespath, recursive=TRUE)
-```
 
 Read Train and Test Data into R
 -------------------------------

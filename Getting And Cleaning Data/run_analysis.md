@@ -2,26 +2,8 @@ Run Data Analysis
 ==================
 Anil Satram
 
-25 September 2015
+12 September 2015
 
-
-Pre-requisite
--------------
-#Load required pacakges:
-
-
-```r
-#packages <- c("data.table", "reshape2","knitr")
-#sapply(packages, require, character.only=TRUE, quietly=TRUE)
-```
-
-Recognise Path and list files
-
-```r
-#path <- getwd()
-#filespath <- file.path(path, "UCI HAR Dataset")
-#list.files(filespath, recursive=TRUE)
-```
 
 Read Train and Test Data into R
 -------------------------------
@@ -561,37 +543,37 @@ knit("codebook.Rmd", encoding="ISO8859-1")
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |.........                                                        |  14%
-## label: unnamed-chunk-14
+## label: unnamed-chunk-12
 ##   |                                                                         |..............                                                   |  21%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |...................                                              |  29%
-## label: unnamed-chunk-15
+## label: unnamed-chunk-13
 ##   |                                                                         |.......................                                          |  36%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |............................                                     |  43%
-## label: unnamed-chunk-16
+## label: unnamed-chunk-14
 ##   |                                                                         |................................                                 |  50%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |.....................................                            |  57%
-## label: unnamed-chunk-17
+## label: unnamed-chunk-15
 ##   |                                                                         |..........................................                       |  64%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |..............................................                   |  71%
-## label: unnamed-chunk-18
+## label: unnamed-chunk-16
 ##   |                                                                         |...................................................              |  79%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |........................................................         |  86%
-## label: unnamed-chunk-19
+## label: unnamed-chunk-17
 ##   |                                                                         |............................................................     |  93%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |.................................................................| 100%
-## label: unnamed-chunk-20
+## label: unnamed-chunk-18
 ```
 
 ```
