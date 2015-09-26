@@ -17,12 +17,10 @@ The goal is
   A full description is available at the site where the data was obtained:
 
 	http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-
 	Here are the data for the project:
-
 	https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
- ## Steps to Tidy Data
+ ##Steps to Tidy Data
  * Download files into local environment e.g. working directory on your laptop
  * Open the R script "run_analysis.R" using a TEXT Editor
  * Change the parameter of "setwd()" function call to the working directory/folder where R script file is saved/download
