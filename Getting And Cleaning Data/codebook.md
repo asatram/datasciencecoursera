@@ -1,5 +1,19 @@
 Codebook
-=========
+========
+
+Key Variables in Data
+---------------------
+
+```r
+key(tidyData)
+```
+
+```
+## [1] "subject"          "activity"         "featDomain"      
+## [4] "featAcceleration" "featInstrument"   "featJerk"        
+## [7] "featMagnitude"    "featVariable"     "featAxis"
+```
+
 
 Date Structure
 ---------------
@@ -26,6 +40,8 @@ str(tidyData)
 ```
 Show Top 3 Rows of Data
 -----------------------
+
+
 
 ```r
 head(tidyData, n=3)
@@ -72,18 +88,6 @@ summary(tidyData)
 ##  Max.   :95.00   Max.   : 0.97451
 ```
 
-Key Variables in Data
----------------------
-
-```r
-key(tidyData)
-```
-
-```
-## [1] "subject"          "activity"         "featDomain"      
-## [4] "featAcceleration" "featInstrument"   "featJerk"        
-## [7] "featMagnitude"    "featVariable"     "featAxis"
-```
 
 All Features Possible
 ---------------------
@@ -230,10 +234,20 @@ tidyData[, .N, by=c(names(tidyData)[grep("^feat", names(tidyData))])]
 ## 66:           SD       NA 180
 ##     featVariable featAxis   N
 ```
+Number of records in Tiday table
+--------------------------------
+
+```r
+nrow(tidyData)
+```
+
+```
+## [1] 11880
+```
 Save Data Table into Text File
 ------------------------------
 
 ```r
-f <- file.path(path, "HumanActivityRecognitionUsingSmartphones_TD.txt")
-write.table(tidyData, f, quote=FALSE, sep="\t", row.names=FALSE)
+tidyDataFile <- file.path(path, "HumanActivityRecognitionUsingSmartphones_TD.txt")
+write.table(tidyData, tidyDataFile, quote=FALSE, sep="\t", row.names=FALSE)
 ```
