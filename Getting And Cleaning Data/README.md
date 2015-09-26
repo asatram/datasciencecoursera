@@ -25,8 +25,8 @@ Steps to Tidy Data
  * Open the R script "run_analysis.R" using a TEXT Editor
  * Change the parameter of "setwd()" function call to the working directory/folder where R script file is saved/download
  * Open an R Console and change directory to working directory
- * Type "source("run_analysis.R") on R console command prompt and enter [ > source("run_analysis.R") ]
- * Type "run_analysis()" at R console command prompt and enter [ > run_alaysis()]
+ * Type "source("run_analysis.R") on R console command prompt and enter ( > source("run_analysis.R")
+ * Type "run_analysis()" at R console command prompt and enter (> run_alaysis()
 
 Outputs Produced
 ----------------
