@@ -1,5 +1,5 @@
 Run Data Analysis
-=================
+==================
 Anil Satram
 
 25 September 2015
@@ -11,55 +11,20 @@ Pre-requisite
 
 
 ```r
-packages <- c("data.table", "reshape2","knitr")
-sapply(packages, require, character.only=TRUE, quietly=TRUE)
-```
-
-```
-## data.table   reshape2      knitr 
-##       TRUE       TRUE       TRUE
+#packages <- c("data.table", "reshape2","knitr")
+#sapply(packages, require, character.only=TRUE, quietly=TRUE)
 ```
 
 Recognise Path and list files
 
 ```r
-path <- getwd()
-filespath <- file.path(path, "UCI HAR Dataset")
-list.files(filespath, recursive=TRUE)
-```
-
-```
-##  [1] "activity_labels.txt"                         
-##  [2] "features.txt"                                
-##  [3] "features_info.txt"                           
-##  [4] "README.txt"                                  
-##  [5] "test/Inertial Signals/body_acc_x_test.txt"   
-##  [6] "test/Inertial Signals/body_acc_y_test.txt"   
-##  [7] "test/Inertial Signals/body_acc_z_test.txt"   
-##  [8] "test/Inertial Signals/body_gyro_x_test.txt"  
-##  [9] "test/Inertial Signals/body_gyro_y_test.txt"  
-## [10] "test/Inertial Signals/body_gyro_z_test.txt"  
-## [11] "test/Inertial Signals/total_acc_x_test.txt"  
-## [12] "test/Inertial Signals/total_acc_y_test.txt"  
-## [13] "test/Inertial Signals/total_acc_z_test.txt"  
-## [14] "test/subject_test.txt"                       
-## [15] "test/X_test.txt"                             
-## [16] "test/y_test.txt"                             
-## [17] "train/Inertial Signals/body_acc_x_train.txt" 
-## [18] "train/Inertial Signals/body_acc_y_train.txt" 
-## [19] "train/Inertial Signals/body_acc_z_train.txt" 
-## [20] "train/Inertial Signals/body_gyro_x_train.txt"
-## [21] "train/Inertial Signals/body_gyro_y_train.txt"
-## [22] "train/Inertial Signals/body_gyro_z_train.txt"
-## [23] "train/Inertial Signals/total_acc_x_train.txt"
-## [24] "train/Inertial Signals/total_acc_y_train.txt"
-## [25] "train/Inertial Signals/total_acc_z_train.txt"
-## [26] "train/subject_train.txt"                     
-## [27] "train/X_train.txt"                           
-## [28] "train/y_train.txt"
+#path <- getwd()
+#filespath <- file.path(path, "UCI HAR Dataset")
+#list.files(filespath, recursive=TRUE)
 ```
 
 Read Train and Test Data into R
+-------------------------------
 
 ```r
 trainSubData <- data.table(read.table(file.path(filespath, "train", "subject_train.txt")))
@@ -74,7 +39,6 @@ labelTestActData  <- data.table(read.table(file.path(filespath, "test" , "Y_test
 setTrainActData <- data.table(read.table(file.path(filespath, "train", "X_train.txt")))
 setTestActData  <- data.table(read.table(file.path(filespath, "test" , "X_test.txt" )))
 ```
-
 
 
 1 - Merges the training and the test sets to create one data set.
@@ -534,7 +498,6 @@ setkey(dt, subject, activityNum, activityName)
 dt <- data.table(melt(dt, key(dt), variable.name="featureCode"))
 dt$activity <- factor(dt$activityName)
 dt <- merge(dt, dtFeatures[, list(featureNum, featureCode, featureName)], by="featureCode", all.x=TRUE)
-#dt$feature <- factor(dt$featureName)
 dt$activity <- factor(dt$activityName)
 dt$feature <- factor(dt$featureName)
 ```
@@ -572,18 +535,12 @@ Features with 3 categories
 Y <- matrix(seq(1,3), nrow=3)
 X <- matrix(c(grepl("-X", dt$feature), grepl("-Y", dt$feature), grepl("-Z", dt$feature)), ncol=nrow(Y))
 dt$featAxis <- factor(X %*% Y, labels=c(NA, "X", "Y", "Z"))
-
-r1 <- nrow(dt[, .N, by=c("feature")])
-r2 <- nrow(dt[, .N, by=c("featDomain", "featAcceleration", "featInstrument", "featJerk", "featMagnitude", "featVariable", "featAxis")])
-r1 == r2
+setkey(dt, subject, activity, featDomain, featAcceleration, featInstrument, featJerk, featMagnitude, featVariable, featAxis)
 ```
-
-```
-## [1] TRUE
-```
+Tidy Data table
+---------------
 
 ```r
-setkey(dt, subject, activity, featDomain, featAcceleration, featInstrument, featJerk, featMagnitude, featVariable, featAxis)
 tidyData<- dt[, list(count = .N, average = mean(value)), by=key(dt)]
 ```
 Generate Codebook
@@ -600,36 +557,41 @@ knit("codebook.Rmd", encoding="ISO8859-1")
 ```
 
 ```
-##   |                                                                         |                                                                 |   0%  |                                                                         |.....                                                            |   8%
+##   |                                                                         |                                                                 |   0%  |                                                                         |.....                                                            |   7%
 ##   ordinary text without R code
 ## 
-##   |                                                                         |...........                                                      |  17%
-## label: unnamed-chunk-13
-##   |                                                                         |................                                                 |  25%
-##   ordinary text without R code
-## 
-##   |                                                                         |......................                                           |  33%
+##   |                                                                         |.........                                                        |  14%
 ## label: unnamed-chunk-14
-##   |                                                                         |...........................                                      |  42%
+##   |                                                                         |..............                                                   |  21%
 ##   ordinary text without R code
 ## 
-##   |                                                                         |................................                                 |  50%
+##   |                                                                         |...................                                              |  29%
 ## label: unnamed-chunk-15
-##   |                                                                         |......................................                           |  58%
+##   |                                                                         |.......................                                          |  36%
 ##   ordinary text without R code
 ## 
-##   |                                                                         |...........................................                      |  67%
+##   |                                                                         |............................                                     |  43%
 ## label: unnamed-chunk-16
-##   |                                                                         |.................................................                |  75%
+##   |                                                                         |................................                                 |  50%
 ##   ordinary text without R code
 ## 
-##   |                                                                         |......................................................           |  83%
+##   |                                                                         |.....................................                            |  57%
 ## label: unnamed-chunk-17
-##   |                                                                         |............................................................     |  92%
+##   |                                                                         |..........................................                       |  64%
+##   ordinary text without R code
+## 
+##   |                                                                         |..............................................                   |  71%
+## label: unnamed-chunk-18
+##   |                                                                         |...................................................              |  79%
+##   ordinary text without R code
+## 
+##   |                                                                         |........................................................         |  86%
+## label: unnamed-chunk-19
+##   |                                                                         |............................................................     |  93%
 ##   ordinary text without R code
 ## 
 ##   |                                                                         |.................................................................| 100%
-## label: unnamed-chunk-18
+## label: unnamed-chunk-20
 ```
 
 ```

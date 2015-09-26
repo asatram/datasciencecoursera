@@ -1,6 +1,13 @@
 Codebook
 ========
 
+Key Variables in Data
+---------------------
+```{r}
+key(tidyData)
+```
+
+
 Date Structure
 ---------------
 ```{r}
@@ -8,6 +15,8 @@ str(tidyData)
 ```
 Show Top 3 Rows of Data
 -----------------------
+
+
 ```{r}
 head(tidyData, n=3)
 ```
@@ -17,19 +26,20 @@ Summary of Variables
 summary(tidyData)
 ```
 
-Key Variables in Data
----------------------
-```{r}
-key(tidyData)
-```
 
 All Features Possible
 ---------------------
 ```{r}
 tidyData[, .N, by=c(names(tidyData)[grep("^feat", names(tidyData))])]
 ```
+Number of records in Tiday table
+--------------------------------
+```{r}
+nrow(tidyData)
+```
 Save Data Table into Text File
 ------------------------------
 ```{r}
-f <- file.path(path, "HumanActivityRecognitionUsingSmartphones_TD.txt")
-write.table(tidyData, f, quote=FALSE, sep="\t", row.names=FALSE)
+tidyDataFile <- file.path(path, "HumanActivityRecognitionUsingSmartphones_TD.txt")
+write.table(tidyData, tidyDataFile, quote=FALSE, sep="\t", row.names=FALSE)
+```
